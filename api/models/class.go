@@ -1,12 +1,12 @@
 // models/class.go
 package models
 
-import "time"
+import "api/utils"
 
 type Class struct {
 	ID        int
 	Name      string
-	StartDate time.Time
-	EndDate   time.Time
+	StartDate utils.CustomTime
+	EndDate   utils.CustomTime
 	Capacity  int
 }

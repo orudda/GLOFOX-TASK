@@ -32,3 +32,8 @@ func (c *ClassController) CreateClass(w http.ResponseWriter, r *http.Request) {
 
 	utils.RespondWithJSON(w, http.StatusCreated, newClass)
 }
+
+func (c *ClassController) GetClasses(w http.ResponseWriter, r *http.Request) {
+	classes := c.ClassService.GetClasses()
+	utils.RespondWithJSON(w, http.StatusOK, classes)
+}
