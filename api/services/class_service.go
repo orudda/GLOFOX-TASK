@@ -33,3 +33,12 @@ func (s *ClassService) CreateClass(class models.Class) error {
 func (s *ClassService) GetClasses() []models.Class {
 	return s.Classes
 }
+
+func (s *ClassService) GetClassByID(id int) (models.Class, error) {
+	for _, c := range s.Classes {
+		if c.ID == id {
+			return c, nil
+		}
+	}
+	return models.Class{}, errors.New("Class not found")
+}
