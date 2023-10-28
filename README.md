@@ -43,9 +43,26 @@ Before you start, make sure you have the following dependencies installed:
 - **GET /classes**: Get a list of all classes.
 - **POST /classes**: Create a new class.
 
+Post example:
+```json
+{
+    "Name": "Test",
+    "StartDate": "2023-12-01",
+    "EndDate": "2023-12-20",
+    "Capacity": 10
+}
+
 ### Bookings
 
 - **POST /bookings**: Create a booking for a class.
+- **GET /bookings**: Get a list of all bookings.
+
+Post example:
+```json
+{
+    "MemberName": "test",
+    "Date": "2023-12-21"
+}
 
 ## Running Tests
 
