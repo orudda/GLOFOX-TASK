@@ -9,7 +9,7 @@ type BookingService struct {
 	Bookings []models.Booking
 }
 
-func NewBookingService() *BookingService {
+func DBBookingService() *BookingService {
 	return &BookingService{
 		Bookings: []models.Booking{},
 	}

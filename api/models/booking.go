@@ -1,9 +1,9 @@
 // models/booking.go
 package models
 
-import "time"
+import "api/utils"
 
 type Booking struct {
 	MemberName string
-	Date       time.Time
+	Date       utils.CustomTime
 }
