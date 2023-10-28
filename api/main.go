@@ -18,7 +18,7 @@ func main() {
 	classService := services.DBClassService()
 	bookingService := services.DBBookingService()
 	classController := controllers.NewClassController(classService)
-	bookingController := controllers.NewBookingController(bookingService)
+	bookingController := controllers.NewBookingController(classService, bookingService)
 
 	r.Use(middleware.Logger)
 	r.Route("/classes", func(r chi.Router) {
