@@ -50,3 +50,8 @@ func (c *BookingController) isClassAvailable(date utils.CustomTime) bool {
 	}
 	return false
 }
+
+func (c *BookingController) GetBookings(w http.ResponseWriter, r *http.Request) {
+	bookings := c.BookingService.GetBookings()
+	utils.RespondWithJSON(w, http.StatusOK, bookings)
+}

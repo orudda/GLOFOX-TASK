@@ -28,6 +28,7 @@ func main() {
 
 	r.Route("/bookings", func(r chi.Router) {
 		r.Post("/", bookingController.CreateBooking)
+		r.Get("/", bookingController.GetBookings)
 	})
 
 	serverAddr := "127.0.0.1:8081"

@@ -15,6 +15,10 @@ func DBBookingService() *BookingService {
 	}
 }
 
+func (s *BookingService) GetBookings() []models.Booking {
+	return s.Bookings
+}
+
 func (s *BookingService) CreateBooking(booking models.Booking) {
 	s.Bookings = append(s.Bookings, booking)
 }
