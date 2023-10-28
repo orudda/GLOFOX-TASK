@@ -1,4 +1,4 @@
-# Studio Booking System
+# GLOFOX TASK
 
 This is a simple Go application that allows studio owners to manage classes and members to book classes.
 
@@ -7,13 +7,13 @@ This is a simple Go application that allows studio owners to manage classes and 
 Before you start, make sure you have the following dependencies installed:
 
 - Go (1.14 or higher): [Download Go](https://golang.org/dl/)
-- Chi Router: We use Chi as the router for our RESTful API. You can install it using:
+- Chi Router: I use Chi as the router for our RESTful API. You can install it using:
 
     ```shell
     go get github.com/go-chi/chi
     ```
 
-- Testify: We use the `testify` library for writing unit tests. You can install it using:
+- Testify: I use the `testify` library for writing unit tests. You can install it using:
 
     ```shell
     go get github.com/stretchr/testify
@@ -24,8 +24,8 @@ Before you start, make sure you have the following dependencies installed:
 1. Clone this repository:
 
     ```shell
-    git clone https://github.com/yourusername/studio-booking-system.git
-    cd studio-booking-system
+    git clone https://github.com/orudda/GLOFOX-TASK
+    cd GLOFOX-TASK
     ```
 
 2. Compile and run the application:
@@ -34,7 +34,7 @@ Before you start, make sure you have the following dependencies installed:
     go run main.go
     ```
 
-   The server will start on port 8080. You can access the API at `http://localhost:8080`.
+   The server will start on port 8080. You can access the API at `http://localhost:8080` or `127.0.0.1:8080`.
 
 ## API Endpoints
 
