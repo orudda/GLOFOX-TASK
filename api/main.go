@@ -31,7 +31,7 @@ func main() {
 		r.Get("/", bookingController.GetBookings)
 	})
 
-	serverAddr := "127.0.0.1:8081"
+	serverAddr := "127.0.0.1:8080"
 	fmt.Println("Servidor iniciado em:", serverAddr)
 
 	http.ListenAndServe(serverAddr, r)
