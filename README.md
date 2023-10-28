@@ -51,6 +51,7 @@ Post example:
     "EndDate": "2023-12-20",
     "Capacity": 10
 }
+```
 
 ### Bookings
 
@@ -63,6 +64,7 @@ Post example:
     "MemberName": "test",
     "Date": "2023-12-21"
 }
+```
 
 ## Running Tests
 
