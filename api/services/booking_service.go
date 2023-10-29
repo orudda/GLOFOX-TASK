@@ -62,6 +62,10 @@ func (s *BookingService) DeleteBooking(id int) error {
 	for i, booking := range s.Bookings {
 		if booking.ID == id {
 			s.Bookings = append(s.Bookings[:i], s.Bookings[i+1:]...)
+			err := s.Classes.IncrementClassCapacity(booking.ClassID)
+			if err != nil {
+				return err
+			}
 			return nil
 		}
 	}
