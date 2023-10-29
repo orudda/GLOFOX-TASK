@@ -92,3 +92,13 @@ func (s *ClassService) UpdateClass(updatedClass models.Class) error {
 	}
 	return errors.New("Class not found")
 }
+
+func (s *ClassService) DeleteClass(id int) error {
+	for i, class := range s.Classes {
+		if class.ID == id {
+			s.Classes = append(s.Classes[:i], s.Classes[i+1:]...)
+			return nil
+		}
+	}
+	return errors.New("Class not found")
+}

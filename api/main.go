@@ -28,7 +28,7 @@ func main() {
 		r.Route("/{classID}", func(r chi.Router) {
 			r.Get("/", classController.GetClassByID)
 			r.Put("/", classController.UpdateClass)
-			// r.Delete("/", classController.DeleteClass)
+			r.Delete("/", classController.DeleteClass)
 		})
 	})
 

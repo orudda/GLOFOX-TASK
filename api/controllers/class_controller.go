@@ -65,3 +65,12 @@ func (c *ClassController) UpdateClass(w http.ResponseWriter, r *http.Request) {
 
 	utils.RespondWithJSON(w, http.StatusOK, updatedClass)
 }
+
+func (c *ClassController) DeleteClass(w http.ResponseWriter, r *http.Request) {
+	classID, _ := strconv.Atoi(chi.URLParam(r, "classID"))
+	if err := c.ClassService.DeleteClass(classID); err != nil {
+		utils.RespondWithError(w, http.StatusNotFound, err.Error())
+		return
+	}
+	utils.RespondWithJSON(w, http.StatusNoContent, nil)
+}
