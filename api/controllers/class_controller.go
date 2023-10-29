@@ -50,3 +50,18 @@ func (c *ClassController) GetClassByID(w http.ResponseWriter, r *http.Request) {
 	}
 	utils.RespondWithJSON(w, http.StatusOK, class)
 }
+
+func (c *ClassController) UpdateClass(w http.ResponseWriter, r *http.Request) {
+	var updatedClass models.Class
+	if err := json.NewDecoder(r.Body).Decode(&updatedClass); err != nil {
+		utils.RespondWithError(w, http.StatusBadRequest, "Invalid request payload")
+		return
+	}
+
+	if err := c.ClassService.UpdateClass(updatedClass); err != nil {
+		utils.RespondWithError(w, http.StatusNotFound, err.Error())
+		return
+	}
+
+	utils.RespondWithJSON(w, http.StatusOK, updatedClass)
+}

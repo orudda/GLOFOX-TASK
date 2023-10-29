@@ -24,11 +24,22 @@ func main() {
 	r.Route("/classes", func(r chi.Router) {
 		r.Get("/", classController.GetClasses)
 		r.Post("/", classController.CreateClass)
+
+		r.Route("/{classID}", func(r chi.Router) {
+			r.Get("/", classController.GetClassByID)
+			r.Put("/", classController.UpdateClass)
+			// r.Delete("/", classController.DeleteClass)
+		})
 	})
 
 	r.Route("/bookings", func(r chi.Router) {
 		r.Post("/", bookingController.CreateBooking)
 		r.Get("/", bookingController.GetBookings)
+
+		r.Route("/{bookingID}", func(r chi.Router) {
+			// r.Put("/", bookingController.UpdateBooking)
+			// r.Delete("/", bookingController.DeleteBooking)
+		})
 	})
 
 	serverAddr := "127.0.0.1:8080"

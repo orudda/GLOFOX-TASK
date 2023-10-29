@@ -82,3 +82,13 @@ func (s *ClassService) DecrementClassCapacity(id int) error {
 	}
 	return errors.New("Class not available on the requested date")
 }
+
+func (s *ClassService) UpdateClass(updatedClass models.Class) error {
+	for i, class := range s.Classes {
+		if class.ID == updatedClass.ID {
+			s.Classes[i] = updatedClass
+			return nil
+		}
+	}
+	return errors.New("Class not found")
+}
