@@ -5,6 +5,7 @@ import (
 	"errors"
 
 	"api/models"
+	"api/utils"
 )
 
 type ClassService struct {
@@ -24,9 +25,24 @@ func (s *ClassService) CreateClass(class models.Class) error {
 		return errors.New("Start date cannot be after end date")
 	}
 
-	class.ID = s.nextID
-	s.Classes = append(s.Classes, class)
-	s.nextID++
+	currentDate := class.StartDate.Time // Access the time.Time value
+
+	for !currentDate.After(class.EndDate.Time) { // Continue until currentDate is after the end date
+		// Create a new class instance with the same details, except for the StartDate and EndDate
+		newClass := models.Class{
+			Name:      class.Name,
+			StartDate: utils.CustomTime{Time: currentDate},
+			EndDate:   utils.CustomTime{Time: currentDate},
+			Capacity:  class.Capacity,
+		}
+
+		newClass.ID = s.nextID
+		s.Classes = append(s.Classes, newClass)
+		s.nextID++
+
+		// Increment the currentDate by one day
+		currentDate = currentDate.AddDate(0, 0, 1)
+	}
 	return nil
 }
 
