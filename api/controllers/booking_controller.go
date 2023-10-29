@@ -44,12 +44,14 @@ func (c *BookingController) GetBookings(w http.ResponseWriter, r *http.Request) 
 }
 
 func (c *BookingController) UpdateBooking(w http.ResponseWriter, r *http.Request) {
+	bookingID, _ := strconv.Atoi(chi.URLParam(r, "bookingID"))
 	var updatedBooking models.Booking
 	if err := json.NewDecoder(r.Body).Decode(&updatedBooking); err != nil {
 		utils.RespondWithError(w, http.StatusBadRequest, "Invalid request payload")
 		return
 	}
 
+	updatedBooking.ID = bookingID
 	if err := c.BookingService.UpdateBooking(updatedBooking); err != nil {
 		utils.RespondWithError(w, http.StatusNotFound, err.Error())
 		return

@@ -9,12 +9,14 @@ import (
 type BookingService struct {
 	Bookings []models.Booking
 	Classes  *ClassService
+	nextID   int
 }
 
 func DBBookingService(classService *ClassService) *BookingService {
 	return &BookingService{
 		Bookings: []models.Booking{},
 		Classes:  classService,
+		nextID:   1,
 	}
 }
 
@@ -39,7 +41,9 @@ func (s *BookingService) CreateBooking(booking models.Booking) error {
 		return err
 	}
 
+	booking.ID = s.nextID
 	s.Bookings = append(s.Bookings, booking)
+	s.nextID++
 	return nil
 }
 
