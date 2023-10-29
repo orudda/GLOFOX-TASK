@@ -27,15 +27,11 @@ func (c *BookingController) CreateBooking(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	// Check if a class is available on the requested date
-	classAvailable := c.BookingService.IsClassAvailable(newBooking.Date)
-	if !classAvailable {
-		utils.RespondWithError(w, http.StatusBadRequest, "Class not available on the requested date")
-		return
+	err := c.BookingService.CreateBooking(newBooking)
+	if err != nil {
+		utils.RespondWithJSON(w, http.StatusCreated, newBooking)
 	}
-
-	c.BookingService.CreateBooking(newBooking)
-	utils.RespondWithJSON(w, http.StatusCreated, newBooking)
+	utils.RespondWithError(w, http.StatusBadRequest, err.Error())
 }
 
 func (c *BookingController) GetBookings(w http.ResponseWriter, r *http.Request) {

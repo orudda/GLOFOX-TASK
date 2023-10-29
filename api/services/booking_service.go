@@ -4,6 +4,7 @@ package services
 import (
 	"api/models"
 	"api/utils"
+	"errors"
 )
 
 type BookingService struct {
@@ -21,8 +22,13 @@ func (s *BookingService) GetBookings() []models.Booking {
 	return s.Bookings
 }
 
-func (s *BookingService) CreateBooking(booking models.Booking) {
+func (s *BookingService) CreateBooking(booking models.Booking) error {
+	classAvailable := s.IsClassAvailable(booking.Date)
+	if !classAvailable {
+		return errors.New("Class not available on the requested date")
+	}
 	s.Bookings = append(s.Bookings, booking)
+	return nil
 }
 
 func (c *BookingService) IsClassAvailable(date utils.CustomTime) bool {
