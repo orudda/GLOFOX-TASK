@@ -42,6 +42,9 @@ Before you start, make sure you have the following dependencies installed:
 
 - **GET /classes**: Get a list of all classes.
 - **POST /classes**: Create a new class.
+- **GET /classes/{classId}**: Get a class of Id classId.
+- **UPDATE /classes/{classId}**: Update class of Id classId.
+- **DELETE /classes/{classId}**: Delete class of Id classId.
 
 Post example:
 ```json
@@ -57,6 +60,8 @@ Post example:
 
 - **POST /bookings**: Create a booking for a class.
 - **GET /bookings**: Get a list of all bookings.
+- **UPDATE /bookings/{bookingId}**: Update booking of Id bookingId.
+- **DELETE /bookings/{bookingId}**: Delete booking of Id bookingId.
 
 Post example:
 ```json
