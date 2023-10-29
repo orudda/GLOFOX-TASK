@@ -59,12 +59,26 @@ func (s *ClassService) GetClassByID(id int) (models.Class, error) {
 	return models.Class{}, errors.New("Class not found")
 }
 
-func (s *ClassService) IsClassAvailable(date utils.CustomTime) bool {
+func (s *ClassService) IsClassAvailable(date utils.CustomTime) *int {
 	for _, class := range s.Classes {
 		if date.Equal(class.StartDate.Time) || (date.After(class.StartDate.Time) && date.Before(class.EndDate.Time)) {
 			// The class exists for the requested date
-			return true
+			return &class.ID
 		}
 	}
-	return false
+	return nil
+}
+
+func (s *ClassService) DecrementClassCapacity(id int) error {
+	for i, class := range s.Classes {
+		if class.ID == id {
+			if class.Capacity > 0 {
+				s.Classes[i].Capacity--
+				return nil
+			} else {
+				return errors.New("Class capacity is exhausted")
+			}
+		}
+	}
+	return errors.New("Class not available on the requested date")
 }

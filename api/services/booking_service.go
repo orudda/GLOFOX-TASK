@@ -23,11 +23,22 @@ func (s *BookingService) GetBookings() *[]models.Booking {
 }
 
 func (s *BookingService) CreateBooking(booking models.Booking) error {
-	classAvailable := s.Classes.IsClassAvailable(booking.Date)
+	classAvailableId := s.Classes.IsClassAvailable(booking.Date)
 
-	if !classAvailable {
+	if classAvailableId == nil {
 		return errors.New("Class not available on the requested date")
 	}
+
+	classAvailable, err := s.Classes.GetClassByID(*classAvailableId)
+	if err != nil {
+		return errors.New("Error when trying get class by Id")
+	}
+
+	err = s.Classes.DecrementClassCapacity(classAvailable.ID)
+	if err != nil {
+		return err
+	}
+
 	s.Bookings = append(s.Bookings, booking)
 	return nil
 }
