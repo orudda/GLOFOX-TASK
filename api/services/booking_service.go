@@ -3,10 +3,12 @@ package services
 
 import (
 	"api/models"
+	"api/utils"
 )
 
 type BookingService struct {
-	Bookings []models.Booking
+	Bookings     []models.Booking
+	ClassService *ClassService
 }
 
 func DBBookingService() *BookingService {
@@ -21,4 +23,15 @@ func (s *BookingService) GetBookings() []models.Booking {
 
 func (s *BookingService) CreateBooking(booking models.Booking) {
 	s.Bookings = append(s.Bookings, booking)
+}
+
+func (c *BookingService) IsClassAvailable(date utils.CustomTime) bool {
+	classes := c.ClassService.GetClasses()
+	for _, class := range classes {
+		if date.Equal(class.StartDate.Time) || (date.After(class.StartDate.Time) && date.Before(class.EndDate.Time)) {
+			// The class exists for the requested date
+			return true
+		}
+	}
+	return false
 }
