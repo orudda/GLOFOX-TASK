@@ -52,12 +52,14 @@ func (c *ClassController) GetClassByID(w http.ResponseWriter, r *http.Request) {
 }
 
 func (c *ClassController) UpdateClass(w http.ResponseWriter, r *http.Request) {
+	classID, _ := strconv.Atoi(chi.URLParam(r, "classID"))
 	var updatedClass models.Class
 	if err := json.NewDecoder(r.Body).Decode(&updatedClass); err != nil {
 		utils.RespondWithError(w, http.StatusBadRequest, "Invalid request payload")
 		return
 	}
 
+	updatedClass.ID = classID
 	if err := c.ClassService.UpdateClass(updatedClass); err != nil {
 		utils.RespondWithError(w, http.StatusNotFound, err.Error())
 		return
