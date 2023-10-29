@@ -29,9 +29,10 @@ func (c *BookingController) CreateBooking(w http.ResponseWriter, r *http.Request
 
 	err := c.BookingService.CreateBooking(newBooking)
 	if err != nil {
-		utils.RespondWithJSON(w, http.StatusCreated, newBooking)
+		utils.RespondWithError(w, http.StatusBadRequest, err.Error())
+		return
 	}
-	utils.RespondWithError(w, http.StatusBadRequest, err.Error())
+	utils.RespondWithJSON(w, http.StatusCreated, newBooking)
 }
 
 func (c *BookingController) GetBookings(w http.ResponseWriter, r *http.Request) {

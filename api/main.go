@@ -16,7 +16,7 @@ import (
 func main() {
 	r := chi.NewRouter()
 	classService := services.DBClassService()
-	bookingService := services.DBBookingService()
+	bookingService := services.DBBookingService(classService)
 	classController := controllers.NewClassController(classService)
 	bookingController := controllers.NewBookingController(bookingService)
 
