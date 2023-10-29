@@ -41,6 +41,7 @@ func (s *BookingService) CreateBooking(booking models.Booking) error {
 		return err
 	}
 
+	booking.ClassID = *classAvailableId
 	booking.ID = s.nextID
 	s.Bookings = append(s.Bookings, booking)
 	s.nextID++
