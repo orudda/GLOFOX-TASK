@@ -42,3 +42,23 @@ func (s *BookingService) CreateBooking(booking models.Booking) error {
 	s.Bookings = append(s.Bookings, booking)
 	return nil
 }
+
+func (s *BookingService) UpdateBooking(updatedBooking models.Booking) error {
+	for i, booking := range s.Bookings {
+		if booking.ID == updatedBooking.ID {
+			s.Bookings[i] = updatedBooking
+			return nil
+		}
+	}
+	return errors.New("Booking not found")
+}
+
+func (s *BookingService) DeleteBooking(id int) error {
+	for i, booking := range s.Bookings {
+		if booking.ID == id {
+			s.Bookings = append(s.Bookings[:i], s.Bookings[i+1:]...)
+			return nil
+		}
+	}
+	return errors.New("Booking not found")
+}

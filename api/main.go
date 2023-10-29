@@ -37,8 +37,8 @@ func main() {
 		r.Get("/", bookingController.GetBookings)
 
 		r.Route("/{bookingID}", func(r chi.Router) {
-			// r.Put("/", bookingController.UpdateBooking)
-			// r.Delete("/", bookingController.DeleteBooking)
+			r.Put("/", bookingController.UpdateBooking)
+			r.Delete("/", bookingController.DeleteBooking)
 		})
 	})
 
