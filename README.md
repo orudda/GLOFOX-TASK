@@ -85,11 +85,17 @@ go test -v ./tests/
 First of all, it was decided to use a simple architecture with the following format:
 
 project/
+
 &nbsp;    |── main.go
+
 &nbsp;    |── controllers/
+
 &nbsp;    |── models/
+
 &nbsp;    |── services/
+
 &nbsp;    |── utils/
+
 &nbsp;    |── tests/
 
 #### Story - Create Classes
